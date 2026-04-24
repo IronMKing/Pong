@@ -1,6 +1,4 @@
 
-
-
 #include "Actors/PaddleBase.h"
 #include "Components/BoxComponent.h"
 #include "Pong/Public/AbilitySystem/Components/MPAbilitySystemComponent.h"
