@@ -13,7 +13,6 @@ APaddleBase::APaddleBase()
 
 	Trigger = CreateDefaultSubobject<UBoxComponent>("TriggerInEditor");
 	SetRootComponent(Trigger);
-	Trigger->bHiddenInGame = false;
 
 	CubeMesh = CreateDefaultSubobject<UStaticMeshComponent>("MeshInEditor");
 	CubeMesh->SetupAttachment(RootComponent);

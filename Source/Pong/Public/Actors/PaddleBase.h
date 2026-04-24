@@ -30,6 +30,9 @@ public:
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Movement")
+	void MovePaddle(float InputValue);
+
 
 	//virtual void Tick(float DeltaTime) override;
 
