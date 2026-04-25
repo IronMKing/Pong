@@ -27,4 +27,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UStaticMeshComponent> SphereMesh;
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Pong")
+	void OnBallResetEffect();
 };

@@ -2,6 +2,7 @@
 #include "Actors/BallBase.h"
 #include "Components/SphereComponent.h"
 
+
 // Sets default values
 ABallBase::ABallBase()
 {
@@ -10,9 +11,11 @@ ABallBase::ABallBase()
 
 	Trigger = CreateDefaultSubobject<USphereComponent>("TriggerInEditor");
 	SetRootComponent(Trigger);
+	Trigger->SetSimulatePhysics(true);
 
 	SphereMesh = CreateDefaultSubobject<UStaticMeshComponent>("MeshInEditor");
 	SphereMesh->SetupAttachment(RootComponent);
+
 
 	Tags.Add(FName("Ball"));
 }
@@ -21,8 +24,6 @@ ABallBase::ABallBase()
 void ABallBase::BeginPlay()
 {
 	Super::BeginPlay();
-
-	Trigger->AddForce(FVector(50000.0, 100000.0, 0.0), "None", true);
 
 }
 

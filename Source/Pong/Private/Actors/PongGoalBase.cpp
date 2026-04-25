@@ -14,6 +14,8 @@ APongGoalBase::APongGoalBase()
 	RootComponent = GoalMesh;
 
 	GoalMesh->SetNotifyRigidBodyCollision(true);
+
+	Tags.Add(FName("Goal"));
 }
 
 // Called when the game starts or when spawned
