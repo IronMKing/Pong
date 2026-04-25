@@ -20,7 +20,6 @@ protected:
 public:	
 
 	ABallBase();
-	//virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	TObjectPtr<USphereComponent>Trigger;

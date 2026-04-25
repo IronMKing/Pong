@@ -6,7 +6,7 @@
 ABallBase::ABallBase()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Trigger = CreateDefaultSubobject<USphereComponent>("TriggerInEditor");
 	SetRootComponent(Trigger);
@@ -14,7 +14,7 @@ ABallBase::ABallBase()
 	SphereMesh = CreateDefaultSubobject<UStaticMeshComponent>("MeshInEditor");
 	SphereMesh->SetupAttachment(RootComponent);
 
-	
+	Tags.Add(FName("Ball"));
 }
 
 // Called when the game starts or when spawned
@@ -26,10 +26,4 @@ void ABallBase::BeginPlay()
 
 }
 
-// Called every frame
-//void ABallBase::Tick(float DeltaTime)
-//{
-//	Super::Tick(DeltaTime);
-//
-//}
 
