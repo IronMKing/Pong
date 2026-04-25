@@ -2,6 +2,8 @@
 #include "Actors/PaddleBase.h"
 #include "Components/BoxComponent.h"
 #include "Pong/Public/AbilitySystem/Components/MPAbilitySystemComponent.h"
+#include"AbilitySystem/Attributes/MPSpeedAttributeSet.h"
+#include"AbilitySystem/Attributes/MPLengthAttributeSet.h"
 
 // Sets default values
 APaddleBase::APaddleBase()
@@ -17,6 +19,9 @@ APaddleBase::APaddleBase()
 
 	AbilitySystemComponent = CreateDefaultSubobject<UMPAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
+
+	SpeedAttributes = CreateDefaultSubobject<UMPSpeedAttributeSet>("SpeedAttributes");
+	LengthAttributes = CreateDefaultSubobject<UMPLengthAttributeSet>("LengthAttributes");
 }
 
 // Called when the game starts or when spawned
@@ -39,4 +44,14 @@ void APaddleBase::PossessedBy(AController* NewController)
 UAbilitySystemComponent* APaddleBase::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
+}
+
+TObjectPtr<UMPSpeedAttributeSet> APaddleBase::GetSpeedAttributeSet() const
+{
+	return TObjectPtr<UMPSpeedAttributeSet>();
+}
+
+TObjectPtr<UMPLengthAttributeSet> APaddleBase::GetLengthAttributeSet() const
+{
+	return TObjectPtr<UMPLengthAttributeSet>();
 }

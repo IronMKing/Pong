@@ -8,6 +8,8 @@
 
 class UBoxComponent;
 class UMPAbilitySystemComponent;
+class UMPSpeedAttributeSet;
+class UMPLengthAttributeSet;
 
 UCLASS()
 class PONG_API APaddleBase : public APawn, public IAbilitySystemInterface
@@ -15,8 +17,16 @@ class PONG_API APaddleBase : public APawn, public IAbilitySystemInterface
 	GENERATED_BODY()
 
 private:
+
+
 	UPROPERTY()
 	TObjectPtr<UMPAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY()
+	TObjectPtr<UMPSpeedAttributeSet> SpeedAttributes;
+
+	UPROPERTY()
+	TObjectPtr<UMPLengthAttributeSet> LengthAttributes;
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,8 +38,6 @@ public:
 	
 	APaddleBase();
 
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-
 	UFUNCTION(BlueprintImplementableEvent, Category = "Movement")
 	void MovePaddle(float InputValue);
 
@@ -38,5 +46,11 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UStaticMeshComponent> CubeMesh;
+
+
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	TObjectPtr<UMPSpeedAttributeSet> GetSpeedAttributeSet() const;
+	TObjectPtr<UMPLengthAttributeSet> GetLengthAttributeSet() const;
 
 };
