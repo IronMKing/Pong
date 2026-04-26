@@ -39,6 +39,7 @@ void APaddleBase::PossessedBy(AController* NewController)
 
 	if (AbilitySystemComponent)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Okay"));
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	}
 }
@@ -50,10 +51,10 @@ UAbilitySystemComponent* APaddleBase::GetAbilitySystemComponent() const
 
 TObjectPtr<UMPSpeedAttributeSet> APaddleBase::GetSpeedAttributeSet() const
 {
-	return TObjectPtr<UMPSpeedAttributeSet>();
+	return SpeedAttributes;
 }
 
 TObjectPtr<UMPLengthAttributeSet> APaddleBase::GetLengthAttributeSet() const
 {
-	return TObjectPtr<UMPLengthAttributeSet>();
+	return LengthAttributes;
 }
