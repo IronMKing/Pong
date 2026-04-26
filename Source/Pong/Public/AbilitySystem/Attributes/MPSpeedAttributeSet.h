@@ -22,6 +22,9 @@ private:
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = true))
 	FGameplayAttributeData MaxSpeed;
 
+protected:
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue);
+
 public:
 	UMPSpeedAttributeSet();
 

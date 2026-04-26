@@ -22,6 +22,8 @@ APaddleBase::APaddleBase()
 
 	SpeedAttributes = CreateDefaultSubobject<UMPSpeedAttributeSet>("SpeedAttributes");
 	LengthAttributes = CreateDefaultSubobject<UMPLengthAttributeSet>("LengthAttributes");
+
+	Tags.Add(FName("Paddle"));
 }
 
 // Called when the game starts or when spawned
