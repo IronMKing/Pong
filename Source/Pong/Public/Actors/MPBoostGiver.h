@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "MPBoostGiver.generated.h"
 
+class UGameplayEffect;
+class USphereComponent;
+
 UCLASS()
 class PONG_API AMPBoostGiver : public AActor
 {
@@ -15,12 +18,20 @@ public:
 	// Sets default values for this actor's properties
 	AMPBoostGiver();
 
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	TObjectPtr<USphereComponent>Trigger;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UStaticMeshComponent> SphereMesh;
+
 protected:
 	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintCallable, Category = "Effects")
+	void ApplyEffectToTarget(AActor* InTargetActor);
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+private:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<UGameplayEffect> EffectClass;
 
 };

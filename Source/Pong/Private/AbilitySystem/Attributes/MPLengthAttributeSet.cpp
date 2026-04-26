@@ -14,5 +14,5 @@ void UMPLengthAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribu
 UMPLengthAttributeSet::UMPLengthAttributeSet()
 {
 	InitLength(100.f);
-	InitMaxLength(100.f);
+	InitMaxLength(200.f);
 }

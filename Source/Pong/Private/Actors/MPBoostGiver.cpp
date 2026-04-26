@@ -2,26 +2,34 @@
 
 
 #include "Actors/MPBoostGiver.h"
+#include "AbilitySystemComponent.h"
+#include "AbilitySystemGlobals.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 AMPBoostGiver::AMPBoostGiver()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
+
+	Trigger = CreateDefaultSubobject<USphereComponent>("TriggerInEditor");
+	SetRootComponent(Trigger);
+
+	SphereMesh = CreateDefaultSubobject<UStaticMeshComponent>("MeshInEditor");
+	SphereMesh->SetupAttachment(RootComponent);
 
 }
 
-// Called when the game starts or when spawned
-void AMPBoostGiver::BeginPlay()
+void AMPBoostGiver::ApplyEffectToTarget(AActor* InTargetActor)
 {
-	Super::BeginPlay();
-	
+	if (UAbilitySystemComponent* targetAbilitySystemComponent = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(InTargetActor))
+	{
+		FGameplayEffectContextHandle effectContextHandle = targetAbilitySystemComponent->MakeEffectContext();
+		effectContextHandle.AddInstigator(InTargetActor, this);
+		FGameplayEffectSpecHandle specHandle = targetAbilitySystemComponent->MakeOutgoingSpec(EffectClass, 1.f, effectContextHandle);
+		targetAbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*specHandle.Data.Get());
+	}
 }
 
-// Called every frame
-void AMPBoostGiver::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 
-}
 
