@@ -14,6 +14,6 @@ void UMPSpeedAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribut
 
 UMPSpeedAttributeSet::UMPSpeedAttributeSet()
 {
-	InitSpeed(100.f);
-	InitMaxSpeed(200.f);
+	InitSpeed(30.f);
+	InitMaxSpeed(100.f);
 }

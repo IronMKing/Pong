@@ -20,9 +20,6 @@ private:
 
 
 	UPROPERTY()
-	TObjectPtr<UMPAbilitySystemComponent> AbilitySystemComponent;
-
-	UPROPERTY()
 	TObjectPtr<UMPSpeedAttributeSet> SpeedAttributes;
 
 	UPROPERTY()
@@ -33,6 +30,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void PossessedBy(AController* NewController) override;
+
+	UPROPERTY(BlueprintReadOnly)
+	TObjectPtr<UMPAbilitySystemComponent> AbilitySystemComponent;
 
 public:	
 	

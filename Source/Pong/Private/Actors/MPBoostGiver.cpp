@@ -22,13 +22,33 @@ AMPBoostGiver::AMPBoostGiver()
 
 void AMPBoostGiver::ApplyEffectToTarget(AActor* InTargetActor)
 {
+    if (!InTargetActor)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Booster: Missing Target"));
+        if (!EffectClass)
+        {
+            UE_LOG(LogTemp, Error, TEXT("Booster: Missing EffectClass!"));
+
+        }
+        return;
+    }
 	if (UAbilitySystemComponent* targetAbilitySystemComponent = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(InTargetActor))
 	{
 		FGameplayEffectContextHandle effectContextHandle = targetAbilitySystemComponent->MakeEffectContext();
 		effectContextHandle.AddInstigator(InTargetActor, this);
 		FGameplayEffectSpecHandle specHandle = targetAbilitySystemComponent->MakeOutgoingSpec(EffectClass, 1.f, effectContextHandle);
 		targetAbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*specHandle.Data.Get());
+	
+        if (specHandle.Data.IsValid())
+        {
+            targetAbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*specHandle.Data.Get());
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("Booster: SpecHandle Data was NULL for %s"), *GetName());
+        }
 	}
+
 }
 
 
