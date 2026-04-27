@@ -34,6 +34,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<UMPAbilitySystemComponent> AbilitySystemComponent;
 
+
 public:	
 	
 	APaddleBase();

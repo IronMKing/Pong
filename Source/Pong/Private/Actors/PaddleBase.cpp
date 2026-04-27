@@ -5,6 +5,7 @@
 #include"AbilitySystem/Attributes/MPSpeedAttributeSet.h"
 #include"AbilitySystem/Attributes/MPLengthAttributeSet.h"
 
+
 // Sets default values
 APaddleBase::APaddleBase()
 {
@@ -31,6 +32,8 @@ void APaddleBase::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UMPLengthAttributeSet::GetLengthAttribute()).AddUObject(this, &APaddleBase::OnLengthAttributeChanged);
+
 }
 
 void APaddleBase::PossessedBy(AController* NewController)
@@ -43,6 +46,7 @@ void APaddleBase::PossessedBy(AController* NewController)
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
 	}
 }
+
 
 UAbilitySystemComponent* APaddleBase::GetAbilitySystemComponent() const
 {
