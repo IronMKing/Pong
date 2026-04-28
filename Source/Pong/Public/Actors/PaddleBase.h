@@ -11,6 +11,8 @@ class UMPAbilitySystemComponent;
 class UMPSpeedAttributeSet;
 class UMPLengthAttributeSet;
 
+struct FOnAttributeChangeData;
+
 UCLASS()
 class PONG_API APaddleBase : public APawn, public IAbilitySystemInterface
 {
@@ -33,6 +35,8 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<UMPAbilitySystemComponent> AbilitySystemComponent;
+
+	void OnLengthAttributeChanged(const FOnAttributeChangeData& Data);
 
 
 public:	

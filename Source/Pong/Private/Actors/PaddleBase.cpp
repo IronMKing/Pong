@@ -4,6 +4,7 @@
 #include "Pong/Public/AbilitySystem/Components/MPAbilitySystemComponent.h"
 #include"AbilitySystem/Attributes/MPSpeedAttributeSet.h"
 #include"AbilitySystem/Attributes/MPLengthAttributeSet.h"
+#include "GameplayEffectTypes.h"
 
 
 // Sets default values
@@ -32,7 +33,7 @@ void APaddleBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UMPLengthAttributeSet::GetLengthAttribute()).AddUObject(this, &APaddleBase::OnLengthAttributeChanged);
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UMPLengthAttributeSet::GetLengthAttribute()).AddUObject(this, &APaddleBase::OnLengthAttributeChanged);
 
 }
 
@@ -61,4 +62,16 @@ TObjectPtr<UMPSpeedAttributeSet> APaddleBase::GetSpeedAttributeSet() const
 TObjectPtr<UMPLengthAttributeSet> APaddleBase::GetLengthAttributeSet() const
 {
 	return LengthAttributes;
+}
+
+void APaddleBase::OnLengthAttributeChanged(const FOnAttributeChangeData& Data)
+{
+	SetActorScale3D(FVector(Data.NewValue, 1.f, 1.f));
+
+	UpdateOverlaps();
+
+	FHitResult SweepHit;
+	K2_AddActorLocalOffset(FVector::ZeroVector, true, SweepHit, true);
+
+	UE_LOG(LogTemp, Warning, TEXT("Paddle Length Dispatched! New Value: %f"), Data.NewValue);
 }

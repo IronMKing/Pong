@@ -37,7 +37,6 @@ void AMPBoostGiver::ApplyEffectToTarget(AActor* InTargetActor)
 		FGameplayEffectContextHandle effectContextHandle = targetAbilitySystemComponent->MakeEffectContext();
 		effectContextHandle.AddInstigator(InTargetActor, this);
 		FGameplayEffectSpecHandle specHandle = targetAbilitySystemComponent->MakeOutgoingSpec(EffectClass, 1.f, effectContextHandle);
-		targetAbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*specHandle.Data.Get());
 	
         if (specHandle.Data.IsValid())
         {
